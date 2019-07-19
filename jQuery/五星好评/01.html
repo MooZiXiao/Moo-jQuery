@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>好评01</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        .comment li{
+            float: left;
+            font-size: 62px;
+            color: orangered;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="comment">
+        <ul>
+            <li>☆</li>
+            <li>☆</li>
+            <li>☆</li>
+            <li>☆</li>
+            <li>☆</li>
+        </ul>
+    </div>
+</body>
+<script src="./jquery.js"></script>
+<script>
+    $(function(){
+        //鼠标移入li,星星改变
+        let lis = $('.comment li');
+        //li的事件
+        lis.on('mouseover',function() {
+            //遍历lis
+            lis.each((i,e) => {
+                //判断当前索引与 索引i的情况
+                if(i <= $(this).index()){
+                    $(e).text('★');
+                }
+                else{
+                    $(e).text('☆');
+                }
+            });
+        });
+        
+        let score = 0;
+        //li移出
+        lis.on('mouseout', function() {
+            //遍历lis
+            lis.each((i,e) => {
+                //需要设置对应的分数来判断
+                if( i < score){
+                    $(e).text('★');
+                }
+                else{
+                    $(e).text('☆');
+                }
+            })
+        });
+
+        //li点击
+        lis.on('click',function(){
+            score = $(this).index() + 1;
+        });
+    })
+</script>
+</html>
